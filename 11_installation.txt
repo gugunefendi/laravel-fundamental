@@ -1,0 +1,77 @@
+Cara Install Laravel 12
+
+Untuk install Laravel 12 kita butuh 3 tools:
+1. PHP
+2. Node.js
+3. Composer
+
+1.  Install PHP
+    Untuk install PHP kita bisa install XAMPP, kenapa XAMPP? Karena didalam XAMPP sudah ada PHP, Apache, PHPMyAdmin dll kita butuh semua dan dengan XAMPP kita ga usah install satu persatu, tapi itu semua sudah ada di XAMPP
+    Link downloadnya https://www.apachefriends.org/download.html lalu pilih yang versi PHPnya > 8.2 karena Laravel 23 membutuhkan PHP 8.2+
+
+2.  Install Composer
+    Kunjungi halaman https://getcomposer.org/ dan klik button download
+
+3.  Install Node.js
+    Kunjungi halaman https://nodejs.org/id/download lalu klik button Penginstall Windows(.msi)
+
+Setelah semua sudah di download langsung saja di install satu persatu.
+
+Jika sudah terinstall semua, sekarang kita check mereka (apakah sudah benar-benar terinstall).
+
+Cara checknya buka command prompt lalu:
+ketik php -v (untuk check versi PHP)
+ketik node -v (untuk check versi node)
+ketik composer (untuk check versi composer)
+
+Install Laravel 
+Setelah memastikan bahwa php, node.js dan composer sudah ada di komputer kita, sekarang kita masuk kedalam folder
+dimana kita akan membuat project Laravel kita. Saya akan menaruh project saya didalam C://xampp/htdocs
+maka kita akan masuk ke folder tersebut. Caranya buka command promt lalu ketik cd C://xampp/htdocs.
+
+Selanjutnya kita install Laravel installer dengan mengetikkan composer global require laravel/installer.
+
+Selanjutnya kita install project Laravel kita caranya ketik Laravel new laravelfundamental (laravelfundamental adalah nama project kita).
+
+Selanjutnya akan muncul pertanyaan starter kit apa yang ingin kita install:
+none
+react
+vue
+livewire
+Disini saya pilih none
+
+Selanjutnya akan muncul pertanyaan framework testing yang kita suka:
+Pest 
+PHPUnit
+Disini saya pilih PHPUnit
+
+Selanjutnya akan muncul Database apa yang ingin kita pakai:
+sqlite
+mysql
+mariadb
+pgsql
+sqlsrv
+Disini saya pilih mysql
+
+Selanjutnya akan muncul pertanyaan apakah kita akan menjalankan migrasi database secara default?
+Disini saya pilih no 
+
+Selanjutnya akan muncul pertanyaan apakah kita akan menjalankan npm install dan npm run build?
+Disini saya pilih no
+
+OKE proses installasi Laravel selesai.
+Sekarang kita masuk ke project kita caranya ketika cd laravelfundamental
+
+Lalu kita buka project kita didalam VS Code, caranya ketika code . (tambahkan spasi sebelum titik).
+
+Selanjutnya kita install libraries yang kita pakai dengan node.js
+Caranya buka terminal didalam VC Code lalu ketik npm install
+
+Selanjutnya kita konfigurasi database kita, caranya buka file .ENV
+Lalu cari bagian DB_DATABASE, DB_USERNAME dan DB_PASSWORD isi sesuai dengan nama database, username dan password yang kita pakai untuk database kita.
+
+Selanjutnya kita migrate database kita, caranya ketikkan php artisan migrate.
+
+Selanjutnya kita jalankan project Laravel kita, caranya ketik composer run dev.
+
+Lihat proses installasi dengan video kunjungi link https://www.youtube.com/watch?v=TA4H5gpxtVk
