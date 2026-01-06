@@ -1,0 +1,58 @@
+** FOLDER STRUCTURE **
+
+Ketika kita install Laravel kita udah dapat struktur folder bawaan.
+Struktur folder bawaan ini diantaranya ada:
+app, bootstrap, config, database, node_modules, public, resources, routes, storage, tests, dan vendor
+
+Namun meskipun Laravel sudah kasih kita struktur folder bawaan, tapi kita tidak wajib ikut 100%
+struktur folder bawaan ini. Misalnya kamu ingin buat folder Service di luar folder app itu boleh aja
+yang penting composer bisa load file yang kalian buat.
+
+Jika kalian buat folder selain folder bawaan pastikan kalian tambahkan route untuk foldernya di composer.json
+di bagian autoload, ini biar composer bisa autoload file yang kalian buat.
+
+
+** ROOT DIRECTORY **
+Root Directory adalah folder utama project kita.
+Dialam root directory ini ada banyak folder: app, bootstrap, config, database dll.
+
+
+** FOLDER App **
+Folder app ini adalah folder inti dari aplikasi kita dimana file-file controller, model, provider disimpan di folder ini.
+
+
+** FOLDER Bootstrap **
+Didalam folder bootstrap ini ada file app.php dimana file ini yang akan meng-inisialisasi aplikasi Laravel kita.
+
+
+** FOLDER config **
+Folder config berisi tentang konfigurasi pada aplikasi Laravel kita, seperti konfiurasi database, auth, cache, filesystems dll.
+
+
+** FOLDER database **
+Adalah tempat dimana kita menyimpan hal-hal yang berhubungan dengan database termasuk migrations, seeder, factories dll.
+
+** FOLDER node_modules **
+Berisi daftar libraries yang kita pakai pada aplikasi Laravel kita dan di manage oleh Node.js.
+
+** FOLDER public **
+Berisi file-file yang bisa diakses langsung dari browser, kalau kalian menyimpan file image disini maka
+image tersebut dapat di akses langsung dari browser.
+
+** FOLDER resources **
+Berisi file-file yang belum di compile baik itu blade, js atau css.
+Ketika ada file blade disini sebenarnya yang di render bukan file bladenya tapi file blade yang sudah di compile oleh 
+blade engine.
+
+** FOLDER routes **
+Berisi file-file routing yang ada di aplikasi kita, kalau mau menambahkan routing untuk API juga didalam folder ini.
+
+** FOLDER storage **
+Adalah folder penyimpanan internal aplikasi kita, semua dokument yang tersimpan disini tidak bisa diakses langsung
+dari browser.
+
+** FOLDER tests **
+Berisi file-file testing yang ada di aplikasi kita.
+
+** FOLDER vendor **
+Berisi daftar libraries yang kita pakai dan di manage oleh Composer.
