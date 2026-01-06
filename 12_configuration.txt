@@ -1,4 +1,4 @@
-Configuration
+----- Configuration -----
 
 Semua file-file yang terkait dengan konfigurasi pada Laravel ada didalam folder config.
 Didalam folder tersebut ada file:
@@ -9,12 +9,14 @@ database.php
 filesystems.php
 dan yang lainnya.
 
-ENV
+
+-- ENV --
 Laravel menggunakan libraries .ENV yang dapat memudahkan kita ketika kita punya banyak environment.
 Kalau kita lihat didalam file app.php akan ada kode 'name' => env('APP_NAME', 'Laravel').
 Function env() akan mengembalikkan nilai yang ada didalam file .ENV.
 
-Melihat Konfigurasi Menggunakan Artisan
+
+-- Melihat Konfigurasi Menggunakan Artisan --
 Kita bisa melihat konfigurasi yang ada di aplikasi Laravel kita menggunakan perintah php artisan about perintah ini
 akan menampilkan konfigurasi:
 Environment
@@ -22,15 +24,18 @@ Cache
 Drivers
 Storage
 
-Melihat konfigurasi tertentu
+
+-- Melihat konfigurasi tertentu --
 Untuk melihat konfigurasi tertenu gunakan perintah php artisan about --only=environment.
 Perintah ini akan menampilkan konfigurasi untuk environment saja.
 
-Menampilkan konfigurasi secara detail
+
+-- Menampilkan konfigurasi secara detail --
 Untuk melihat konfigurasi secara detail gunakan perintah php artisan show:database
 Ini akan menampilkan seluruh konfigurasi yang terkait dengan database secara detail.
 
-Environment Variable Types
+
+-- Environment Variable Types --
 Nilai-nilai yang ada di dalam file .ENV secara default dibaca String oleh Laravel.
 Namun ada nilai-nilai tertenu yang langsung di convert ke tipe data boolean, string atau null.
 misalnya nilai pada env kamu tulis true maka akan di convert ke boolean
@@ -38,3 +43,66 @@ kalau kamu tulis empty makan akan di convert ke string kosong
 kalau kamu tulis null maka akan mengembalikkan nilai null
 
 
+-- Menentukan Environment Saat Ini --
+Kita bisa juga meng-check atau menentukan Environment yang saat ini kita pakai.
+Caranya:
+import dulu Facades App
+use Illuminate\Support\Facades\App;
+
+lalu panggil
+$env = App::environment()
+dd($env) //ini akan menampilkan environment yang saat ini kita pakai
+
+
+-- Meng-enkripsi File .ENV --
+Kita bisa juga meng-enkripsi file .ENV kita, caranya:
+php artisan env:encrypt
+Setelah itu akan muncul pertanyaan enkripsi apa yang akan kita pakai.
+Disini pilih saja yang generate.
+Lalu kita akan dapat sebuah key, key ini jangan lupa di simpan untuk decrypt nanti.
+
+
+-- De-cript File .ENV --
+Untuk decrypt file .env gunakan perintah
+php artisan env:decrypt --key=keyuntukdecryptdisini
+
+
+-- Mengambil Nilai Konfigurasi --
+Untuk mengambil nilai pada konfigurasi ada dua cara:
+1. Gunakan Facades
+use App\Illuminate\Support\Facades\Config;
+
+$appName = Config::get('app.name');
+echo $appName;
+
+2. Gunakan Function config()
+$timeZone = config('app.timezone');
+echo $timeZone;
+
+
+-- Caching Configuration --
+Laravel punya fitur untuk caching configuration ini berguna banget ketika aplikasi kita sudah di production,
+jadi aplikasi kita bakal lebih cepet karena Laravel tidak perlu baca semua konfigurasi di .ENV tapi akan baca
+konfigurasi pada cache yang kita buat.
+
+Untuk buat cache configuration caranya:
+php artisan config:cache
+
+Untuk menghapus cache configuration gunakan:
+php artisan config:clear
+php artisan cache:clear
+
+
+-- Publish Configuration --
+Ketika kita menggunakan libraries tambahan sering banget akan ada konfigurasi tambahan.
+Nah kita bisa gunakan perintah php artisan config:publish 
+Setelah kita jalankan perintah tersebut maka akan ada konfigurasi tambahan di folder config.
+
+
+-- Debug Mode --
+Kalau kamu lagi debug dan kamu tidak ingin user melihat apa yang sedang kamu lakukan kamu bisa gunakan perintah
+php artisan down
+ini akan membuat halaman kita tidak bisa di akses oleh user.
+
+php artisan up
+Perintah ini akan meng-nonaktifkan mode debug.
