@@ -1,0 +1,38 @@
+***** Front End pada Laravel 12 *****
+
+
+**** Konten ****
+1. Bisakah membangun Front End di Laravel 12?
+2. Dengan apa aja bisa membangun Front End di Laravel 12?
+3. Bagaimana cara membangun front end di Laravel 12?
+4. Bagaimama cara kerja front end di Laravel 12?
+5. Kelebihan dan kekurangan front end di Laravel 12?
+
+
+*** Pembukaan ***
+Dalam dokumentasinya, Laravel sudah bilang kalau Laravel adalah framework backend yang sudah menyediakan banyak fitur untuk bangun 
+aplikasi web modern seperti routing, validation, caching, queues, file storage dan masih banyak lagi. 
+
+
+*** Bisakah membangun Front End di Laravel 12 ***
+Bisa.
+Meskipun Laravel adalah framework backend yang sudah menyediakan banyak untuk bangun aplikasi modern.
+Namun Laravel juga menyediakan fitur untuk kita (Full Stack Developer) untuk membangun front end di aplikasi Laravel kita.
+
+
+*** Dengan apa aja bisa membangun Front End di Laravel 12 ***
+Ada dua cara untuk membangun front end di Laravel:
+1. PHP
+  Untuk membangun front end dengan PHP ada dua cara:
+    - Blade
+    - Livewire
+2. Javascript
+  - Vue
+  - React
+  Catatan* dalam tutorial ini kita akan menggunakan Inertia, Inertia akan menjadi jembatan antara Laravel dengan React / Vue.
+
+
+*** Bagaimana cara membangun front end di Laravel 12 ***
+1. Membangun front end dengan Blade
+    
+
