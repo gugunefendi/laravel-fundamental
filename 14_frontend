@@ -31,8 +31,27 @@ Ada dua cara untuk membangun front end di Laravel:
   - React
   Catatan* dalam tutorial ini kita akan menggunakan Inertia, Inertia akan menjadi jembatan antara Laravel dengan React / Vue.
 
+Untuk memudahkan kita dalam belajar front end di Laravel, kita akan membuat mini project.
+Kita buat migrasi dulu, caranya:
+1. Buat sebuah migrasi untuk table products
+    Ketikkan di terminal php artisan make:migration create_products_table
+    Lalu isi file migration tersebut dengan beberapa field
+    $table->string('name');
+    $table->integer('price');
+    $table->integer('stock');
 
-*** Bagaimana cara membangun front end di Laravel 12 ***
+2. Setelah itu kita buat sebuah model
+    Ketikkan di terminal php artisan make:model Product
+    Lalu kita buat sebuah properti
+    protected $table = 'products';
+    protected $fillable = ['name', 'price', 'stock'];
+
+3. Selanjutnya kita migrate table-nya
+    Caranya ketikkan di terminal php artisan migrate
+
+Oke sekarang kita udah punya table dengan nama products dan model dengan nama Product.
+
+Sekarang kita bangun front end kita menggunakan Blade.
 1. Membangun front end dengan Blade
     
 
