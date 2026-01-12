@@ -49,9 +49,123 @@ Kita buat migrasi dulu, caranya:
 3. Selanjutnya kita migrate table-nya
     Caranya ketikkan di terminal php artisan migrate
 
+4. Lalu kita buat sebuah ProductController caranya ketik di terminal
+    php artisan make:controller ProductController
+
 Oke sekarang kita udah punya table dengan nama products dan model dengan nama Product.
 
 Sekarang kita bangun front end kita menggunakan Blade.
 1. Membangun front end dengan Blade
-    
+    1.1  Buat file blade
+          Buat sebuah folder dengan nama products didalam folder resources/views.
+          Lalu buat sebuah file dengan nama list.blade.php.
+          Sekarang ketikkan kode berikut
+          <html>
+          <head>
+          	<style>
+          		table, thead, tbody, th, tr, td {
+          			border: 1px solid #cccccc;
+          			margin-bottom: 20px;
+          		}
+          	</style>
+          </head>
+          <body>
+          	<div>
+          		<table>
+          			<thead>
+          				<th>Name</th>
+          				<th>Price</th>
+          				<th>Stock</th>
+          			</thead>
+          			<tbody>
+          				@if(count($products) > 0)
+          					@foreach($products as $prod)
+          					<tr>
+          						<td>{{ $prod->name }}</td>
+          						<td>{{ $prod->price }}</td>
+          						<td>{{ $prod->stock }}</td>
+          					</tr>
+          					@endforeach
+          				@else
+          					<span>No products found</span>
+          				@endif
+          			</tbody>
+          		</table>
+          		<form action="/product-store" method="post">
+          		@csrf
+          			<div>
+          				<label>Product Name</label>
+          				<input type="text" name="name" />
+          			</div>
+          			<div>
+          				<label>Product Price</label>
+          				<input type="number" name="price" />
+          			</div>
+          			<div>
+          				<label>Product Stock</label>
+          				<input type="number" name="stock" />
+          			</div>
+          			<button type="submit">Save</button>
+          		</form>
+          	</div>
+          </body>
+          </html>
+
+    1.2 Modifikasi file ProductController
+        Buka file ProductController yang ada didalam folder App\Http\Controllers
+        Lalu ketikkan kode berikut
+        <?php
+        
+        namespace App\Http\Controllers;
+        
+        use Illuminate\Http\Request;
+        use App\Models\Product;
+        
+        class ProductController extends Controller
+        {
+        	protected $products;
+        	
+        	public function __construct(Product $prod)
+        	{
+        		$this->products = $prod;
+        	}
+        	
+            public function index()
+        	{
+        		$products = $this->products->get();
+        		return view('products.list', ['products' => $products]);
+        	}
+        	
+        	public function store(Request $req)
+        	{
+        		$this->products->create([
+        			'name' => $req->name,
+        			'price' => $req->price,
+        			'stock' => $req->stock
+        		]);
+        		
+        		return redirect()->back();
+        	}
+        }
+
+    1.3   Buat routing
+          Buka file web.php yang ada didalam folder routes.
+          Lalu ubah kodenya menjadi seperti dibawah ini.
+          <?php
+          
+          use Illuminate\Support\Facades\Route;
+          use App\Http\Controllers\ProductController;
+          
+          Route::get('/', function () {
+              return view('welcome');
+          });
+          
+          Route::get('/products', [ProductController::class, 'index']);
+          Route::post('/product-store', [ProductController::class, 'store']);
+
+Oke sekarang jalanin project Laravel kita dengan ketik di terminal composer run dev lalu buka url http://localhost:8000/products.
+Maka akan muncul sebuah halaman yang menampilkan table dari isi table products dan form untuk menambah product.
+
+Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk menambah data products dengan Blade.
+
 
