@@ -168,4 +168,23 @@ Maka akan muncul sebuah halaman yang menampilkan table dari isi table products d
 
 Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk menambah data products dengan Blade.
 
+2. Membangun Front End dengan Livewire
+    2.1 Install Livewire
+        Buka terminal lalu ketikkan:
+        composer require livewire/livewire
+    2.2 Buat Componen ProductList
+        Ketikkan di terminal php artisan make:livewire ProductList
+        Sekarang kita memiliki 2 file baru
+        app/Http/Livewire/ProductList.php dan
+        resources/views/livewire/product-list.blade.php
+    2.3 Buat method di componen ProductList
+
+    2.4 Customize view live wire di product-list
+        
+    2.5 Buat layout template
+        Ketikkan di terminal php artisan livewire:layout
+        Ini akan menambahkan file app.blade.php di folder resources/views/components/layouts
+
+
+
 
