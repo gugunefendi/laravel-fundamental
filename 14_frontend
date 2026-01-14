@@ -178,6 +178,7 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         app/Http/Livewire/ProductList.php dan
         resources/views/livewire/product-list.blade.php
     2.3 Buat method di componen ProductList
+        Ubah kode pada class ProductList menjadi seperti dibawah
 
     2.4 Customize view live wire di product-list
         
