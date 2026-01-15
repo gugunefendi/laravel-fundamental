@@ -179,8 +179,40 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         resources/views/livewire/product-list.blade.php
     2.3 Buat method di componen ProductList
         Ubah kode pada class ProductList menjadi seperti dibawah
+        <?php
 
-    2.4 Customize view live wire di product-list
+        namespace App\Livewire;
+        
+        use Livewire\Component;
+        use App\Models\Product;
+        
+        class ProductList extends Component
+        {
+            public $products = [];
+        
+            public function mount()
+            {
+                $this->loadProducts();
+            }
+        
+            public function loadProducts()
+            {
+                $this->products = Product::latest()->get();
+            }
+        
+            public function render()
+            {
+                return view('livewire.product-list');
+            }
+        }
+
+
+    2.4 Customize view live-wire di product-list
+        Ubah kode pada view live-wire menjadi seperti dibawah
+        <div>
+          {{ json_encode($products) }}
+      </div>
+
         
     2.5 Buat layout template
         Ketikkan di terminal php artisan livewire:layout
