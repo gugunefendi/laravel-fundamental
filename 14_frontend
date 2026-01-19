@@ -210,8 +210,27 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
     2.4 Customize view live-wire di product-list
         Ubah kode pada view live-wire menjadi seperti dibawah
         <div>
-          {{ json_encode($products) }}
-      </div>
+              @php $no=1; @endphp
+              <table>
+                  <thead>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                  </thead>
+                  <tbody>
+                      @foreach($products as $product)
+                      <tr>
+                          <td>{{ $no++ }}</td>
+                          <td>{{ $product->name }}</td>
+                          <td>{{ $product->price }}</td>
+                          <td>{{ $product->stock }}</td>
+                      </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          </div>
+
 
         
     2.5 Buat layout template
