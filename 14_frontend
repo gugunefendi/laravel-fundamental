@@ -172,12 +172,16 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
     2.1 Install Livewire
         Buka terminal lalu ketikkan:
         composer require livewire/livewire
-    2.2 Buat Componen ProductList
-        Ketikkan di terminal php artisan make:livewire ProductList
+    2.2 Publish Configurasi
+        Ketikkan di terminal
+        php artisan livewire:publish --config
+    2.3 Buat Componen ProductList
+        Ketikkan di terminal 
+        php artisan make:livewire ProductList
         Sekarang kita memiliki 2 file baru
         app/Http/Livewire/ProductList.php dan
         resources/views/livewire/product-list.blade.php
-    2.3 Buat method di componen ProductList
+    2.4 Buat method di componen ProductList
         Ubah kode pada class ProductList menjadi seperti dibawah
         <?php
 
@@ -207,7 +211,7 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         }
 
 
-    2.4 Customize view live-wire di product-list
+    2.5 Customize view live-wire di product-list
         Ubah kode pada view live-wire menjadi seperti dibawah
         <div>
               @php $no=1; @endphp
@@ -230,12 +234,21 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
                   </tbody>
               </table>
           </div>
-
-
         
-    2.5 Buat layout template
-        Ketikkan di terminal php artisan livewire:layout
+    2.6 Buat layout template
+        Ketikkan di terminal 
+        php artisan livewire:layout
         Ini akan menambahkan file app.blade.php di folder resources/views/components/layouts
+
+    2.7 Buat Routing
+        Ubah kode pada routes/web.php menjadi:
+        <?php
+
+        use Illuminate\Support\Facades\Route;
+        use App\Livewire\ProductList;
+                
+        Route::get('products', ProductList::class);
+
 
 
 
