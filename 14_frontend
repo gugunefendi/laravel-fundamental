@@ -186,24 +186,26 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         <?php
 
         namespace App\Livewire;
-        
+                
         use Livewire\Component;
         use App\Models\Product;
-        
+        use Livewire\Attributes\On;
+                
         class ProductList extends Component
         {
             public $products = [];
-        
+                
             public function mount()
             {
                 $this->loadProducts();
             }
-        
+             
+            #[On('product-created')]
             public function loadProducts()
             {
                 $this->products = Product::latest()->get();
             }
-        
+                
             public function render()
             {
                 return view('livewire.product-list');
@@ -214,40 +216,106 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
     2.5 Customize view live-wire di product-list
         Ubah kode pada view live-wire menjadi seperti dibawah
         <div>
-              @php $no=1; @endphp
-              <table>
-                  <thead>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Price</th>
-                      <th>Stock</th>
-                  </thead>
-                  <tbody>
-                      @foreach($products as $product)
-                      <tr>
-                          <td>{{ $no++ }}</td>
-                          <td>{{ $product->name }}</td>
-                          <td>{{ $product->price }}</td>
-                          <td>{{ $product->stock }}</td>
-                      </tr>
-                      @endforeach
-                  </tbody>
-              </table>
-          </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->stock }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         
-    2.6 Buat layout template
+            <livewire:product-create />
+        </div>
+
+    2.6 Buat Componen Livewire dengan nama ProductCreate
+        Caranya ketikkan perintah berikut di terminal
+        php artisan make:livewire ProductCreate
+        Maka kita akan dapat 2 file baru
+        app/Livewire//ProductCreate.php
+        resources/views/livewire/product-create.blade.php
+
+    2.7 Customize Class ProductCreate
+        <?php
+
+        namespace App\Livewire;
+        
+        use Livewire\Component;
+        use App\Models\Product;
+        
+        class ProductCreate extends Component
+        {
+            public $name = '';
+            public $price = 0;
+            public $stock = 0;
+        
+            public function save()
+            {
+                Product::create([
+                    'name' => $this->name,
+                    'price' => $this->price,
+                    'stock' => $this->stock
+                ]);
+        
+                $this->reset();
+        
+                $this->dispatch('product-created');
+            }
+        
+            public function render()
+            {
+                return view('livewire.product-create');
+            }
+        }
+
+    2.7 Customize view product-create
+        <div>
+            <form wire:submit="save">
+                <div>
+                    <label for="">Name</label>
+                    <input type="text" wire:model="name">
+                </div>
+                <div>
+                    <label for="">Price</label>
+                    <input type="number" wire:model="price">
+                </div>
+                <div>
+                    <label for="">Stock</label>
+                    <input type="number" wire:model="stock">
+                </div>
+                
+                <button type="submit">Save</button>
+            </form>
+        </div>
+
+
+    2.8 Buat layout template
         Ketikkan di terminal 
         php artisan livewire:layout
         Ini akan menambahkan file app.blade.php di folder resources/views/components/layouts
 
-    2.7 Buat Routing
-        Ubah kode pada routes/web.php menjadi:
-        <?php
-
-        use Illuminate\Support\Facades\Route;
+    2.9 Buat Routing
+        Tambahkan kode berikut pada routes/web.php menjadi:
         use App\Livewire\ProductList;
                 
         Route::get('products', ProductList::class);
+
+    3.0 Hasil
+        Sekarang buka browser lalu buka url http://localhost:8000/products
+        Kamu akan lihat view livewire kita yang bisa menyimpan data tanpa reload halaman penuh.
+        Sampai tahap ini kita sudah berhasil belajar menggunakan Livewire.
 
 
 
