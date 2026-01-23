@@ -317,6 +317,10 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         Kamu akan lihat view livewire kita yang bisa menyimpan data tanpa reload halaman penuh.
         Sampai tahap ini kita sudah berhasil belajar menggunakan Livewire.
 
+3. Membangun Front End dengan Javascript (Inertia dan Vue)
+    3.1 Install Dependency
+        composer require inertiajs/inertia-laravel
+
 
 
 
