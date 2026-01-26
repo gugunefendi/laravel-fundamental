@@ -322,6 +322,86 @@ Sampai sini maka kita sudah selesai menampilkan data dan membuat form untuk mena
         composer require inertiajs/inertia-laravel
 
 
+install dependency
+composer require inertiajs/inertia-Laravel
 
+buat file baru app.blade.php didalam resources/views
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        @vite('resources/js/app.js')
+        @inertiaHead
+    </head>
+    <body>
+        @inertia
+    </body>
+</html>
+
+Register middleware
+php artisan inertia:middleware
+
+use App\Http\Middleware\HandleInertiaRequests;
+
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->web(append: [
+        HandleInertiaRequests::class,
+    ]);
+})
+
+
+Install dependency vue.js
+npm install @inertiajs/vue3
+
+Inisisalisasi Inertia resources/js/app.js
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
+
+createInertiaApp({
+    resolve: name => {
+        const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
+        return pages[`./Pages/${name}.vue`]
+    },
+    setup({ el, App, props, plugin }) {
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .mount(el)
+    },
+})
+
+Buat Controller
+php artisan make:controller ProductController
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
+class ProductController extends Controller
+{
+    public function index()
+    {
+        return Inertia::render('ProductList');
+    }
+}
+
+
+Buat routing
+Route::get('productinertia', [ProductController::class, 'index']);
+
+
+buat component vue didalam resources/js/Pages/ProductList.vue
+<script setup>
+
+</script>
+
+<template>
+        <h1>Hello World</h1>
+</template>
+
+
+Install plugin
+npm i @vitejs/plugin-vue
 
 
